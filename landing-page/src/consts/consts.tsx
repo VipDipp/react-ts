@@ -24,7 +24,10 @@ const defaultValue = [
     { value: 0, label: 'Choose your rate to our services'}
 ]
 
+const api = "33bde26b41eeb4589d2c644f56d2968a";
+
 export default {
+    api,
     optionsSelect,
     optionsRadio,
     optionsCheckBox,

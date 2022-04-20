@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useUserContext } from '../App';
-import styles from '../styles/styles.module.css';
-import SubmitButton from './SubmitButton';
-import StorageTextInput from './StorageTextInput';
+import loginStyles from '../styles/loginStyles.module.css';
+import Button from '../components/Button';
+import StorageTextInput from '../components/StorageTextInput';
 
 const LoginPage:FC = () => {
     const { loggedIn, setLoggedIn } = useUserContext();
@@ -10,7 +10,7 @@ const LoginPage:FC = () => {
     return (
         <div>
             <form 
-            className={styles.form}
+            className={loginStyles.form}
             onSubmit={() => {
                 setLoggedIn(true);
                 localStorage.setItem('loggedIn', JSON.stringify(true));
@@ -18,15 +18,19 @@ const LoginPage:FC = () => {
             > 
                 <StorageTextInput 
                 variant='email' 
-                styleClass={styles.text_input} 
+                styleClass={loginStyles.text_input} 
                 placeholderText='Your email'
                 /> 
                 <StorageTextInput 
                 variant='password' 
-                styleClass={styles.text_input} 
+                styleClass={loginStyles.text_input} 
                 placeholderText='Your password' 
                 />
-                <SubmitButton/>
+                <Button 
+                text="Sign In" 
+                type="submit" 
+                classStyle={loginStyles.submit}
+                />
             </form>
         </div>
     );

@@ -22,7 +22,11 @@ const CheckBox: FC<InputProps> =
     <div>
         {options.map((a: objectProps) => (
         <label>
-            <input type="checkbox" name="checkbox" className={classStyle}/>
+            <input 
+            type="checkbox" 
+            name="checkbox" 
+            className={classStyle}
+            />
             {a.label}
         </label>
         ))} 

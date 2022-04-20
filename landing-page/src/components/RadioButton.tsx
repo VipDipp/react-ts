@@ -22,7 +22,11 @@ const RadioButton: FC<InputProps> =
     <div>
         {options.map((a: objectProps) => (
         <label>
-            <input type="radio" name="stuff" className={classStyle} />
+            <input 
+            type="radio" 
+            name="stuff" 
+            className={classStyle} 
+            />
             {a.label}
         </label>
         ))} 

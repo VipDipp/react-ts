@@ -8,7 +8,7 @@ interface InputProps {
     variant: string
 }
 
-const TextInput: FC<InputProps> = 
+const StorageTextInput: FC<InputProps> = 
     ({
         width,
         height,
@@ -37,4 +37,4 @@ const TextInput: FC<InputProps> =
         );
     };
 
-export default TextInput;
+export default StorageTextInput;

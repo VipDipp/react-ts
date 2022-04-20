@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { ChangeEventHandler, FC } from 'react';
 
 interface InputProps {
     type: string,
     classStyle?: string,
     placeholder?: string,
-    required?: boolean
+    required?: boolean,
+    onChange?: ChangeEventHandler
 }
 
 const TextInput: FC<InputProps> = 
@@ -12,7 +13,8 @@ const TextInput: FC<InputProps> =
     type,
     classStyle,
     placeholder,
-    required
+    required,
+    onChange
 }) => {
     return (
         <input 
@@ -20,6 +22,7 @@ const TextInput: FC<InputProps> =
             placeholder={placeholder}
             type={type}
             required={required}
+            onChange={onChange}
         />
     );
 };
