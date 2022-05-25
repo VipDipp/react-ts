@@ -1,9 +1,12 @@
-import { useUserContext } from '../App';
+import React from 'react';
+import { UserContext } from '../App';
 import loginStyles from '../styles/loginStyles.module.css';
 
-const LogOutButton = () => {
-    const { setLoggedIn } = useUserContext();
+class LogOutButton extends React.Component {
+    render() {
     return (
+        <UserContext.Consumer>
+        {({setLoggedIn}) => (
         <button
             type="button"
             className={loginStyles.logout}
@@ -16,7 +19,10 @@ const LogOutButton = () => {
         > 
             Log out
         </button>
+        )}
+        </UserContext.Consumer>
     );
+    }
 };
 
 export default LogOutButton;

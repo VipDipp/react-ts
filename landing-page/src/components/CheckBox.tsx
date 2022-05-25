@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React from 'react';
 
 type objectProps = {
     value: number,
@@ -11,27 +11,23 @@ interface InputProps {
     options: Array<objectProps>,
 }
 
-
-const CheckBox: FC<InputProps> = 
-({
-    classStyle,
-    required,
-    options,
-}) => {
+class CheckBox extends React.Component<InputProps> {
+    render() {
     return(
     <div>
-        {options.map((a: objectProps) => (
+        {this.props.options.map((a: objectProps) => (
         <label>
             <input 
             type="checkbox" 
             name="checkbox" 
-            className={classStyle}
+            className={this.props.classStyle}
             />
             {a.label}
         </label>
         ))} 
     </div>
     )
+        }
 };
 
 export default CheckBox;

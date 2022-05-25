@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
-import apiRequest from './api/api';
+import React, { createContext, useContext } from 'react';
 import RouteComponent from './components/RouteComponent';
 
 export type userType = {
@@ -14,14 +13,25 @@ export const UserContext = createContext<userType>({
 
 export const useUserContext = () => useContext(UserContext)
 
-const App = () => {
-  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn") === "true");
-
-  return (
-    <UserContext.Provider value = {{loggedIn, setLoggedIn}}>
-      <RouteComponent />
-    </UserContext.Provider>
-  );
+class App extends React.Component<{}, {loggedIn: boolean, setLoggedIn: any}> {
+  setLoggedIn = (loggedIn: boolean) => {
+    this.setState({ loggedIn })
+  }
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      loggedIn: localStorage.getItem("loggedIn") === "true",
+      setLoggedIn: this.setLoggedIn
+    };
+  }
+  
+  render() {
+    return (
+      <UserContext.Provider value = {{loggedIn: this.state.loggedIn, setLoggedIn: this.state.setLoggedIn}}>
+        <RouteComponent />
+      </UserContext.Provider>
+    );
+  }
 };
 
 export default App;

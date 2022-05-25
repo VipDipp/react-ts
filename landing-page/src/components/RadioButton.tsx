@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React from 'react';
 
 type objectProps = {
     value: number,
@@ -12,26 +12,23 @@ interface InputProps {
 }
 
 
-const RadioButton: FC<InputProps> = 
-({
-    classStyle,
-    required,
-    options,
-}) => {
-    return(
-    <div>
-        {options.map((a: objectProps) => (
-        <label>
-            <input 
-            type="radio" 
-            name="stuff" 
-            className={classStyle} 
-            />
-            {a.label}
-        </label>
-        ))} 
-    </div>
-    )
+class RadioButton extends React.Component<InputProps>{
+    render() {
+        return(
+        <div>
+            {this.props.options.map((a: objectProps) => (
+            <label>
+                <input 
+                type="radio" 
+                name="stuff" 
+                className={this.props.classStyle} 
+                />
+                {a.label}
+            </label>
+            ))} 
+        </div>
+        )
+    }
 };
 
 export default RadioButton;

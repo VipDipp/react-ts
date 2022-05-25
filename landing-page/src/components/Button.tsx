@@ -1,5 +1,5 @@
-import { FC, MouseEventHandler, ReactNode } from 'react';
-import styles from '../styles/styles.module.css'
+import React from 'react';
+import { MouseEventHandler } from 'react';
 
 type ButtonTypes = "button" | "reset" | "submit" | undefined
 
@@ -10,22 +10,19 @@ interface InputProps {
     onClick?: MouseEventHandler,
 }
 
-const SubmitButton: FC<InputProps> = 
-({
-    text,
-    type,
-    classStyle,
-    onClick,
-}) => {
+class SubmitButton extends React.Component<InputProps> { 
+    render() {
     return (
         <button 
-            type={type}
-            className={classStyle}
-            onClick={onClick}
+            type={this.props.type}
+            className={this.props.classStyle}
+            onClick={this.props.onClick}
         >
-            {text}
+            {this.props.text}
         </button>
     );
+    }
 };
+
 
 export default SubmitButton;

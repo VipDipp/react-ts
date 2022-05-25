@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FC } from 'react';
+import React, { ChangeEventHandler } from 'react';
 
 interface InputProps {
     type: string,
@@ -8,23 +8,18 @@ interface InputProps {
     onChange?: ChangeEventHandler
 }
 
-const TextInput: FC<InputProps> = 
-({
-    type,
-    classStyle,
-    placeholder,
-    required,
-    onChange
-}) => {
-    return (
-        <input 
-            className={classStyle}
-            placeholder={placeholder}
-            type={type}
-            required={required}
-            onChange={onChange}
-        />
-    );
+class TextInput extends React.Component<InputProps>{
+    render() {
+        return (
+            <input 
+                className={this.props.classStyle}
+                placeholder={this.props.placeholder}
+                type={this.props.type}
+                required={this.props.required}
+                onChange={this.props.onChange}
+            />
+        );
+    }
 };
 
 export default TextInput;

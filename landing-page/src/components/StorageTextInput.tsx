@@ -1,40 +1,38 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { CSSProperties } from 'react';
 
 interface InputProps {
-    width?: string;
+    width?: CSSProperties;
     height?: string;
     styleClass?: string;
     placeholderText?: string;
     variant: string
 }
 
-const StorageTextInput: FC<InputProps> = 
-    ({
-        width,
-        height,
-        variant,
-        placeholderText,
-        styleClass
-    }) => {
-        const [value, setValue] = useState(() => {
-            const saved = localStorage.getItem(variant);
+class StorageTextInput extends React.Component<InputProps> {
+    state = {
+        value : () => {
+            const saved = localStorage.getItem(this.props.variant);
             const initialValue = JSON.parse(saved || '{}');
             return initialValue || ""; 
-        });
-        useEffect(() => {
-            localStorage.setItem(variant, JSON.stringify(value));
-        }, [value]);
+        }
+    }
+    componentDidUpdate() {
+        localStorage.setItem(this.props.variant, JSON.stringify(this.state.value))
+    }
+
+    render() {
         return (
             <input 
                 required={true}
-                minLength={variant == "password" ? 8 : 0}
-                style={{width}} 
-                type={variant} 
-                className={styleClass} 
-                placeholder={placeholderText}
-                onChange={(e) => setValue(e.target.value)}
+                minLength={this.props.variant == "password" ? 8 : 0}
+                style={this.props.width} 
+                type={this.props.variant} 
+                className={this.props.styleClass} 
+                placeholder={this.props.placeholderText}
+                onChange={(e) => this.setState({value: e.target.value})}
             />
         );
     };
+} 
 
 export default StorageTextInput;
